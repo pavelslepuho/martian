@@ -75,7 +75,8 @@ filmParse();
 let input = document.querySelector('.adding__input'),
     submit = document.querySelector('.add'),
     favourite = document.querySelector('[type=checkbox]'),
-    deleteFilm = document.querySelectorAll('.delete');
+    deleteFilm = document.querySelector('.promo__interactive-list'),
+    del= deleteFilm.querySelectorAll('.delete');
 
 submit.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -98,15 +99,19 @@ submit.addEventListener('submit', (e) => {
 });
 
 function delFilm() {
-    deleteFilm = document.querySelectorAll('.delete');
-    deleteFilm.forEach((item, i) => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            item.parentElement.remove();
-            movies.splice(i, 1);
-            filmParse();
-            console.log('!!!!');
-            delFilm();
+    deleteFilm = document.querySelector('.promo__interactive-list');
+    del = deleteFilm.querySelectorAll('.delete');
+    deleteFilm.addEventListener('click', (e) => {
+        e.preventDefault();
+        let target = e.target;
+        del.forEach((item, i) => {
+            if (item === target) {
+                item.parentElement.remove();
+                movies.splice(i, 1);
+                filmParse();
+                console.log('!!!!');
+                delFilm();
+            }
         });
     });
 }
