@@ -27,7 +27,8 @@ const movieDB = {
 let promoAdv = document.querySelector('.promo__adv'),
     genre = document.querySelector('.promo__genre'),
     bcgnd = document.querySelector('.promo__bg'),
-    filmList = document.querySelector('.promo__interactive-list');
+    filmList = document.querySelector('.promo__interactive-list'),
+    deleteFilm = document.querySelectorAll('.delete');
 
 promoAdv.style.display = 'none';
 
@@ -52,9 +53,9 @@ function filmParse() {
             <div class="delete"></div>
         </li>`;
     });
+    deleteFilm = document.querySelectorAll('.delete');
+    delFilm();
 }
-
-filmParse();
 
 // 1) Реализовать функционал, что после заполнения формы и нажатия кнопки "Подтвердить" - 
 // новый фильм добавляется в список. Страница не должна перезагружаться.
@@ -74,8 +75,7 @@ filmParse();
 
 let input = document.querySelector('.adding__input'),
     submit = document.querySelector('.add'),
-    favourite = document.querySelector('[type=checkbox]'),
-    deleteFilm = document.querySelectorAll('.delete');
+    favourite = document.querySelector('[type=checkbox]');
 
 submit.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -98,21 +98,16 @@ submit.addEventListener('submit', (e) => {
 });
 
 function delFilm() {
-    deleteFilm = document.querySelectorAll('.delete');
     deleteFilm.forEach((item, i) => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             item.parentElement.remove();
             movies.splice(i, 1);
             filmParse();
-            console.log('!!!!');
-            delFilm();
         });
     });
 }
 
-delFilm();
-
-
+filmParse();
 
 
